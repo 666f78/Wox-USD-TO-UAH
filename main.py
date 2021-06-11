@@ -4,7 +4,6 @@ from wox import Wox
 import requests
 import json
 import time
-import threading
 from datetime import datetime
 
 class USDtoUAH(Wox):
@@ -15,7 +14,6 @@ class USDtoUAH(Wox):
         results = []
         r = self.req()
         if not q:
-            time.sleep(1)
             for i in r[:-1]:
                 results.append({
                         "Title": f"{i['ccy']} to {i['base_ccy']}",
@@ -27,6 +25,10 @@ class USDtoUAH(Wox):
                 "Title": f"Last refresh - {datetime.fromtimestamp(int(r[4]['unix'])).strftime('%H:%M:%S %d-%m-%Y')}",
                 "IcoPath":"Images/app.png"
             })
+            results.append({
+                "Title": f"create by 666f78 :P",
+                "IcoPath":"Images/app.png"
+            })
             return results
 
         elif qs[0] == 'usd':
@@ -34,6 +36,10 @@ class USDtoUAH(Wox):
             results.append({
                 "Title": f"{r[0]['ccy']} to {r[0]['base_ccy']}",
                 "SubTitle": f"buy - {round(float(r[0]['buy'])*float(sm),2)} sell - {round(float(r[0]['sale'])*float(sm),2)}",
+                "IcoPath":"Images/app.png"
+            })
+            results.append({
+                "Title": f"create by 666f78 :P",
                 "IcoPath":"Images/app.png"
             })
             return results
@@ -46,11 +52,19 @@ class USDtoUAH(Wox):
                         "SubTitle": f"buy - {round(float(sm)/float(i['buy']),2)} sell - {round(float(sm)/float(i['sale']),2)}",
                         "IcoPath":"Images/app.png"
                 })
+            results.append({
+                "Title": f"create by 666f78 :P",
+                "IcoPath":"Images/app.png"
+            })
             return results
      
         else:
             results.append({
                 "Title": "!c (uah or usd)",
+                "IcoPath":"Images/app.png"
+            })
+            results.append({
+                "Title": f"create by 666f78 :P",
                 "IcoPath":"Images/app.png"
             })
             return results
